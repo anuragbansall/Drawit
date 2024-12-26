@@ -20,7 +20,7 @@ colorOptions.addEventListener('click', (e) => {
       pencilIcon.querySelector('polygon').setAttribute('fill', `${selectedColor}`);
       pencilIcon.querySelector('rect').setAttribute('fill', `${selectedColor}`);
     }
-  });
+});
   
 
 drawingOptions.addEventListener('click', (e) => {
@@ -43,7 +43,6 @@ drawingSizes.addEventListener('change', (e) => {
 });
 
 
-
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -59,37 +58,81 @@ window.addEventListener("resize", () => {
     if (canvasData) ctx.putImageData(canvasData, 0, 0);
 });
 
-
 let isDrawing = false;
-let isErasing = document
+let isErasing = false;
+
+function getClientCoordinates(e) {
+  if (e.touches) {
+    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  } else {
+    return { x: e.clientX, y: e.clientY };
+  }
+}
 
 canvas.addEventListener('mousedown', (e) => {
   if (drawingOption === "pencil") { 
     isDrawing = true;
+    const { x, y } = getClientCoordinates(e);
     ctx.beginPath();
-    drawLine(e.clientX, e.clientY);
-  }else if(drawingOption === "eraser"){
-    isErasing = true
-    eraseLine(e.clientX, e.clientY)
+    drawLine(x, y);
+  } else if (drawingOption === "eraser") {
+    isErasing = true;
+    const { x, y } = getClientCoordinates(e);
+    eraseLine(x, y);
+  }
+});
+
+canvas.addEventListener('touchstart', (e) => {
+  if (drawingOption === "pencil") { 
+    isDrawing = true;
+    const { x, y } = getClientCoordinates(e);
+    ctx.beginPath();
+    drawLine(x, y);
+  } else if (drawingOption === "eraser") {
+    isErasing = true;
+    const { x, y } = getClientCoordinates(e);
+    eraseLine(x, y);
   }
 });
 
 document.addEventListener('mousemove', (e) => {
   if (isDrawing && drawingOption === "pencil") { 
-    drawLine(e.clientX, e.clientY);
-  }else if(isErasing && drawingOption === "eraser"){
-    eraseLine(e.clientX, e.clientY)
+    const { x, y } = getClientCoordinates(e);
+    drawLine(x, y);
+  } else if (isErasing && drawingOption === "eraser") {
+    const { x, y } = getClientCoordinates(e);
+    eraseLine(x, y);
+  }
+});
+
+document.addEventListener('touchmove', (e) => {
+  if (isDrawing && drawingOption === "pencil") { 
+    const { x, y } = getClientCoordinates(e);
+    drawLine(x, y);
+  } else if (isErasing && drawingOption === "eraser") {
+    const { x, y } = getClientCoordinates(e);
+    eraseLine(x, y);
   }
 });
 
 document.addEventListener('mouseup', () => {
   isDrawing = false;
-  isErasing = false
+  isErasing = false;
+});
+
+document.addEventListener('touchend', () => {
+  isDrawing = false;
+  isErasing = false;
 });
 
 document.addEventListener('mouseleave', () => {
   isDrawing = false;
-  isErasing = false
+  isErasing = false;
+});
+
+document.addEventListener('touchleave', () => {
+  isDrawing = false;
+  isErasing = false;
 });
 
 function drawLine(x, y) {

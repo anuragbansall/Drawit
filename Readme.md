@@ -44,4 +44,4 @@ Project Link: [https://github.com/anuragbansall/Drawit](https://github.com/anura
 <!-- MARKDOWN LINKS & IMAGES -->
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/anuragbansall
-[product-screenshot]: ./assets/drawit-screenshot.png
+[product-screenshot]: ./assets/Demo.png

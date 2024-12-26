@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Drawit is a drawing application with tools for color selection, pen, eraser, and adjustable sizes." />
+    <title>Drawit</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main id="main">
+      <div id="tools-container">
+        <div id="color-options">
+            <!-- Colors will added here -->
+        </div>
+        <div id="drawing-options">
+          <div id="pen" class="drawing-option" data-tool="pen">
+            <img
+              src="https://www.svgrepo.com/show/186577/pencil.svg"
+              alt="Pencil Tool Icon"
+            />
+          </div>
+          <div id="eraser" class="drawing-option" data-tool="eraser">
+            <img
+              src="https://www.svgrepo.com/show/528232/eraser.svg"
+              alt="Eraser Tool Icon"
+            />
+          </div>
+          <select id="drawing-sizes">
+            <option value="1">Small</option>
+            <option value="2">Medium</option>
+            <option value="3">Large</option>
+          </select>
+        </div>
+      </div>
+
+      <canvas id="canvas"></canvas>
+    </main>
+
+    <script>
+      const colors = [
+        { name: "Black", hex: "#000000" },
+        { name: "Red", hex: "#FF0000" },
+        { name: "Blue", hex: "#0000FF" },
+        { name: "Green", hex: "#008000" },
+        { name: "Orange", hex: "#FFA500" },
+      ];
+
+      const colorOptionsContainer = document.getElementById("color-options");
+
+      colors.forEach((color) => {
+        const colorOption = document.createElement("div");
+        colorOption.classList.add("color-option");
+        colorOption.style.backgroundColor = color.hex;
+        colorOption.dataset.colorName = color.name;
+        colorOption.dataset.colorHex = color.hex;
+        colorOptionsContainer.appendChild(colorOption);
+      });
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>

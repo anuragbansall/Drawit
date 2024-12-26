@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://drawit-online.vercel.app/">
-    <img src="./assets/logo.png" alt="Logo" width="80" height="80">
+    <img src="./assets/logo.png" alt="Logo" height="80">
   </a>
 
 <h3 align="center">Drawit</h3>

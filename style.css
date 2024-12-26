@@ -1,91 +1,115 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: cursive, Courier, monospace;
 }
 
-html, body{
-    height: 100%;
-    width: 100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
-#main{
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+#main {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-#tools-container{
-    user-select: none;
-    background-color: #ffffff;
-    position: fixed;
-    top: -10px;
-    left: 50%;
-    z-index: 100;
-    transform: translateX(-50%);
-    width: fit-content;
-    box-shadow: 0 0 10px #dadada;
-    border-radius: 10px;
-    padding: 1rem 2rem;
+#tools-container {
+  user-select: none;
+  background-color: #ffffff;
+  position: fixed;
+  top: -10px;
+  left: 50%;
+  z-index: 100;
+  transform: translateX(-50%);
+  width: fit-content;
+  box-shadow: 0 0 10px #dadada;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+#tools-container #color-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#tools-container #color-options .color-option {
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#tools-container #color-options .active {
+  scale: 1.2;
+  border: 1px solid #000000;
+  filter: brightness(1.2);
+}
+
+#tools-container #drawing-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#tools-container #drawing-options .drawing-option {
+  height: 2rem;
+  cursor: pointer;
+}
+
+#tools-container #drawing-options .active {
+  scale: 1.3;
+}
+
+#tools-container #drawing-options .drawing-option svg {
+  height: 3rem;
+}
+
+#pencil-icon rect {
+  opacity: 0.5;
+}
+
+#tools-container #drawing-sizes {
+  width: 15rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  /* font-weight: bold; */
+  border: none;
+  box-shadow: 0 0 5px #dadada;
+  border-radius: 10px;
+  margin-left: 2rem;
+}
+
+#canvas {
+  background-color: #f9f9f9;
+}
+
+@media (max-width: 600px) {
+  #tools-container {
+    top: -15px;
+    padding: 1rem 1rem;
     padding-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 5rem;
-}
-
-#tools-container #color-options{
-    display: flex;
-    align-items: center;
+    max-width: 90%;
     gap: 0.5rem;
+  }
+
+  #tools-container #drawing-sizes {
+    width: fit-content;
+  }
 }
 
-#tools-container #color-options .color-option{
-    height: 1.6rem;
-    width: 1.6rem;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-#tools-container #color-options .active{
-    scale: 1.2;
-    border: 1px solid #000000;
-    filter: brightness(1.2);
-}
-
-#tools-container #drawing-options{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-#tools-container #drawing-options .drawing-option{
-    height: 2rem;
-    cursor: pointer;
-}
-
-#tools-container #drawing-options .active{
-    scale: 1.3;
-}
-
-#tools-container #drawing-options .drawing-option img{
-    height: 100%;
-}
-
-#tools-container #drawing-sizes{
-    width: 15rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 5px #dadada;
-    border-radius: 10px;
-    margin-left: 2rem;
-}
-
-#canvas{
-    height: 100%;
-    width: 100%;
-    background-color: #f9f9f9;
+@media (max-width: 400px) {
+  #tools-container #drawing-sizes {
+    display: none;
+  }
 }

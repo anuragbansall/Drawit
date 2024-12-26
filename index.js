@@ -1,6 +1,7 @@
 const colorOptions = document.getElementById('color-options');
 const drawingOptions = document.getElementById('drawing-options');
 const drawingSizes = document.getElementById('drawing-sizes');
+const pencilIcon = document.getElementById('pencil-icon')
 
 let selectedColor = "000000";
 let drawingOption = "";
@@ -16,7 +17,8 @@ colorOptions.addEventListener('click', (e) => {
       selectedColorElement.classList.add('active');
   
       selectedColor = selectedColorElement.dataset.colorHex;
-      console.log(`Selected color: ${selectedColor}`);
+      pencilIcon.querySelector('polygon').setAttribute('fill', `${selectedColor}`);
+      pencilIcon.querySelector('rect').setAttribute('fill', `${selectedColor}`);
     }
   });
   
@@ -31,7 +33,6 @@ drawingOptions.addEventListener('click', (e) => {
 
     drawingOptionElement.classList.add('active');
     drawingOption = drawingOptionElement.dataset.tool;
-    console.log(`Selected option: ${drawingOption}`);
 
     previousDrawingOption = drawingOptionElement;
   }
@@ -39,7 +40,6 @@ drawingOptions.addEventListener('click', (e) => {
 
 drawingSizes.addEventListener('change', (e) => {
   drawingSize = e.target.value;
-  console.log(`Selected size: ${drawingSize}`);
 });
 
 
@@ -61,7 +61,7 @@ window.addEventListener("resize", () => {
 
 
 let isDrawing = false;
-let isErasing = false
+let isErasing = document
 
 canvas.addEventListener('mousedown', (e) => {
   if (drawingOption === "pencil") { 
@@ -74,7 +74,7 @@ canvas.addEventListener('mousedown', (e) => {
   }
 });
 
-canvas.addEventListener('mousemove', (e) => {
+document.addEventListener('mousemove', (e) => {
   if (isDrawing && drawingOption === "pencil") { 
     drawLine(e.clientX, e.clientY);
   }else if(isErasing && drawingOption === "eraser"){
@@ -82,12 +82,12 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
-canvas.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', () => {
   isDrawing = false;
   isErasing = false
 });
 
-canvas.addEventListener('mouseleave', () => {
+document.addEventListener('mouseleave', () => {
   isDrawing = false;
   isErasing = false
 });

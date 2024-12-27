@@ -140,12 +140,13 @@
     <script>
       let deferredPrompt;
 
+      const installButton = document.getElementById("install-button");
+
+      installButton.style.display = "none";
+
       window.addEventListener("beforeinstallprompt", (event) => {
         event.preventDefault();
-
         deferredPrompt = event;
-
-        const installButton = document.getElementById("install-button");
         installButton.style.display = "block";
 
         installButton.addEventListener("click", () => {
@@ -153,19 +154,24 @@
           deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === "accepted") {
               console.log("User accepted the installation prompt");
-              installButton.style.display = "none";
             } else {
               console.log("User dismissed the installation prompt");
             }
             deferredPrompt = null;
+            installButton.style.display = "none";
           });
         });
       });
 
       window.addEventListener("appinstalled", () => {
         console.log("App installed");
-        document.getElementById("install-button").style.display = "none";
+        installButton.style.display = "none";
+        deferredPrompt = null;
       });
+
+      if (window.matchMedia("(display-mode: standalone)").matches) {
+        installButton.style.display = "none";
+      }
     </script>
     <script>
       const colors = [

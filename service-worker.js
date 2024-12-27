@@ -2,7 +2,7 @@ const CACHE_NAME = 'drawit-cache-v1';
 const urlsToCache = [
   './',
   './index.html',
-  './styles.css',
+  './style.css',
   './index.js',
   './manifest.json',
 ];

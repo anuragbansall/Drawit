@@ -18,7 +18,25 @@ body {
   overflow: hidden;
 }
 
+#install-button {
+  display: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#install-button:hover {
+  background-color: #45a049;
+}
+
+
 #tools-container {
+  overflow-x: auto;
+  overflow-y: hidden;
   user-select: none;
   background-color: #ffffff;
   position: fixed;
@@ -117,21 +135,21 @@ body {
 }
 
 @media (max-width: 600px) {
+  #install-button{
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 30px;
+  }
   #tools-container {
     top: -15px;
     padding: 1rem 1rem;
     padding-top: 1.5rem;
     max-width: 90%;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   #tools-container #drawing-sizes {
     width: fit-content;
-  }
-}
-
-@media (max-width: 400px) {
-  #tools-container #drawing-sizes {
-    display: none;
   }
 }

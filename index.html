@@ -22,23 +22,23 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="manifest" href="manifest.json" />
   </head>
   <body>
     <main id="main">
+      <button id="install-button">Install App</button>
       <div id="tools-container">
         <div id="color-options">
           <!-- Colors will added here -->
         </div>
-        <div id="undo-redo-options">
-          <button id="undo-btn" title="Undo drawing" aria-label="Undo drawing">
-            <i class="fa-solid fa-rotate-left"></i>
-          </button>
-          <button id="redo-btn" title="Redo drawing" aria-label="Redo drawing">
-            <i class="fa-solid fa-rotate-right"></i>
-          </button>
-        </div>
         <div id="drawing-options">
-          <button id="pen" class="drawing-option" data-tool="pencil" title="Pencil" aria-label="Pencil">
+          <button
+            id="pen"
+            class="drawing-option"
+            data-tool="pencil"
+            title="Pencil"
+            aria-label="Pencil"
+          >
             <svg
               id="pencil-icon"
               viewBox="0 0 50 50"
@@ -48,7 +48,13 @@
               <polygon points="20,10 30,10 25,0" fill="#000000" />
             </svg>
           </button>
-          <button id="eraser" class="drawing-option" data-tool="eraser" title="Eraser" aria-label="Eraser">
+          <button
+            id="eraser"
+            class="drawing-option"
+            data-tool="eraser"
+            title="Eraser"
+            aria-label="Eraser"
+          >
             <svg
               id="eraser-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -103,11 +109,54 @@
             <option value="3">Large</option>
           </select>
         </div>
+
+        <div id="undo-redo-options">
+          <button id="undo-btn" title="Undo drawing" aria-label="Undo drawing">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+          <button id="redo-btn" title="Redo drawing" aria-label="Redo drawing">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
       </div>
 
       <canvas id="canvas"></canvas>
     </main>
 
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./service-worker.js")
+            .then((registration) =>
+              console.log("ServiceWorker registered:", registration)
+            )
+            .catch((error) =>
+              console.log("ServiceWorker registration failed:", error)
+            );
+        });
+      }
+    </script>
+    <script>
+      let deferredPrompt;
+
+      window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+
+        deferredPrompt = event;
+
+        const installButton = document.getElementById("install-button");
+
+        installButton.addEventListener("click", () => {
+          installButton.style.display = "none";
+          deferredPrompt.prompt();
+
+          deferredPrompt.userChoice.then((choiceResult) => {
+            deferredPrompt = null;
+          });
+        });
+      });
+    </script>
     <script>
       const colors = [
         { name: "Black", hex: "#000000" },

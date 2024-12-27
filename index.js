@@ -124,7 +124,7 @@ function eraseLine(x, y) {
 }
 
 // Canvas event listeners
-canvas.addEventListener('mousedown', (e) => {
+document.addEventListener('mousedown', (e) => {
   if (drawingOption === "pencil" || drawingOption === "eraser") {
     saveCanvasState();
     isDrawing = true;
@@ -138,7 +138,7 @@ canvas.addEventListener('mousedown', (e) => {
   }
 });
 
-canvas.addEventListener('mousemove', (e) => {
+document.addEventListener('mousemove', (e) => {
   if (isDrawing && drawingOption === "pencil") {
     const { x, y } = getClientCoordinates(e);
     drawLine(x, y);
@@ -148,7 +148,7 @@ canvas.addEventListener('mousemove', (e) => {
   }
 });
 
-canvas.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', () => {
   if (isDrawing || isErasing) {
     saveCanvasState();
     isDrawing = false;
@@ -156,13 +156,13 @@ canvas.addEventListener('mouseup', () => {
   }
 });
 
-canvas.addEventListener('mouseleave', () => {
+document.addEventListener('mouseleave', () => {
   isDrawing = false;
   isErasing = false;
 });
 
 // Touch event listeners for mobile devices
-canvas.addEventListener('touchstart', (e) => {
+document.addEventListener('touchstart', (e) => {
   if (drawingOption === "pencil" || drawingOption === "eraser") {
     saveCanvasState();
     isDrawing = true;
@@ -176,7 +176,7 @@ canvas.addEventListener('touchstart', (e) => {
   }
 });
 
-canvas.addEventListener('touchmove', (e) => {
+document.addEventListener('touchmove', (e) => {
   if (isDrawing && drawingOption === "pencil") {
     const { x, y } = getClientCoordinates(e);
     drawLine(x, y);
@@ -186,7 +186,7 @@ canvas.addEventListener('touchmove', (e) => {
   }
 });
 
-canvas.addEventListener('touchend', () => {
+document.addEventListener('touchend', () => {
   if (isDrawing || isErasing) {
     saveCanvasState();
     isDrawing = false;

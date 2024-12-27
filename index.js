@@ -189,7 +189,6 @@ document.addEventListener('touchmove', (e) => {
 });
 
 document.addEventListener('touchend', () => {
-  e.preventDefault();
   if (isDrawing || isErasing) {
     saveCanvasState();
     isDrawing = false;

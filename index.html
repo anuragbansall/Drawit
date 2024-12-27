@@ -9,7 +9,19 @@
     />
     <title>Drawit</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="/assets/logo-icon-transparent.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="/assets/logo-icon-transparent.png"
+      type="image/x-icon"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <main id="main">
@@ -17,8 +29,16 @@
         <div id="color-options">
           <!-- Colors will added here -->
         </div>
+        <div id="undo-redo-options">
+          <button id="undo-btn" title="Undo drawing" aria-label="Undo drawing">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+          <button id="redo-btn" title="Redo drawing" aria-label="Redo drawing">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
         <div id="drawing-options">
-          <div id="pen" class="drawing-option" data-tool="pencil">
+          <button id="pen" class="drawing-option" data-tool="pencil" title="Pencil" aria-label="Pencil">
             <svg
               id="pencil-icon"
               viewBox="0 0 50 50"
@@ -27,8 +47,8 @@
               <rect x="20" y="10" width="10" height="30" fill="#000000" />
               <polygon points="20,10 30,10 25,0" fill="#000000" />
             </svg>
-          </div>
-          <div id="eraser" class="drawing-option" data-tool="eraser">
+          </button>
+          <button id="eraser" class="drawing-option" data-tool="eraser" title="Eraser" aria-label="Eraser">
             <svg
               id="eraser-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +96,7 @@
                 stroke-width="2"
               />
             </svg>
-          </div>
+          </button>
           <select id="drawing-sizes">
             <option value="1">Small</option>
             <option value="2">Medium</option>
@@ -100,11 +120,12 @@
       const colorOptionsContainer = document.getElementById("color-options");
 
       colors.forEach((color) => {
-        const colorOption = document.createElement("div");
+        const colorOption = document.createElement("button");
         colorOption.classList.add("color-option");
         colorOption.style.backgroundColor = color.hex;
         colorOption.dataset.colorName = color.name;
         colorOption.dataset.colorHex = color.hex;
+        colorOption.ariaLabel = color.name;
         colorOptionsContainer.appendChild(colorOption);
       });
     </script>

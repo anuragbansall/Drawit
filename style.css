@@ -33,7 +33,26 @@ body {
   padding-top: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 5rem;
+  gap: 3rem;
+}
+
+#tools-container #undo-redo-options{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#tools-container #undo-redo-options button{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+  transition: all 0.2s;
+}
+
+#tools-container #undo-redo-options button:hover{
+  scale: 1.2;
 }
 
 #tools-container #color-options {
@@ -47,6 +66,7 @@ body {
   width: 1.6rem;
   border-radius: 50%;
   cursor: pointer;
+  border: none;
 }
 
 #tools-container #color-options .active {
@@ -64,6 +84,8 @@ body {
 #tools-container #drawing-options .drawing-option {
   height: 2rem;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 #tools-container #drawing-options .active {

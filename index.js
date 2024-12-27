@@ -163,6 +163,7 @@ document.addEventListener('mouseleave', () => {
 
 // Touch event listeners for mobile devices
 document.addEventListener('touchstart', (e) => {
+  e.preventDefault();
   if (drawingOption === "pencil" || drawingOption === "eraser") {
     saveCanvasState();
     isDrawing = true;
@@ -177,6 +178,7 @@ document.addEventListener('touchstart', (e) => {
 });
 
 document.addEventListener('touchmove', (e) => {
+  e.preventDefault();
   if (isDrawing && drawingOption === "pencil") {
     const { x, y } = getClientCoordinates(e);
     drawLine(x, y);
@@ -187,6 +189,7 @@ document.addEventListener('touchmove', (e) => {
 });
 
 document.addEventListener('touchend', () => {
+  e.preventDefault();
   if (isDrawing || isErasing) {
     saveCanvasState();
     isDrawing = false;
